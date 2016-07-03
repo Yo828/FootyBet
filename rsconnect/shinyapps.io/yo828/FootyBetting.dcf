@@ -1,0 +1,10 @@
+name: FootyBetting
+account: yo828
+server: shinyapps.io
+appId: 112065
+bundleId: 495366
+url: https://yo828.shinyapps.io/FootyBetting/
+when: 1467554422.12154
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: z.archive/server.R|z.archive/ui.R
