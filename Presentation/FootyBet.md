@@ -1,0 +1,72 @@
+Exploring AFL Total Score betting
+========================================================
+author: Yo828
+date: 3 July 2016
+autosize: true
+
+Introduction
+========================================================
+
+- The Exploring AFL Total Score betting app visualizes the outcome of Australian Football League (AFL) games in terms of the combined points scored by both teams in any particalur match. The total points scored in the match is being compared the Total Points predicted by bookmakers (i.e. the boomaker would offer roughly even odds for any realised score above or below this predicted total score).
+
+- The purpose of the app is to try to identify specific ranges of predicted bookmaker scores (relating to a specific team) that offers the best value in placing a bet in the future based on past results. 
+
+User Input
+========================================================
+The user interacts with the app in three ways.  
+
+- **Select Team**  
+The user selects one team to view charts for. All the games that this team participated in will be included.  
+
+- **Add Smoother**  
+The smoother could be helpful in highlighting areas where the total realised score significantly differs from the predicted score (by being further away from 0). This could be areas to focus on for further analysis.  
+
+- **Select a Total Score range**  
+This is used to focus on a specific range of predicted total scores (possibly highlighted by Smoother as discussed above)
+
+App Output
+========================================================
+<small><small><small>  
+**Chart**  
+- The chart gives a visual representation of the  difference in the predicted total score for each game (for the selected team) and the actual (realised) total score for the same game, versus the total predicted score for the game. 
+
+- The vertical green lines indicate the total score range that has been selected by the user while the horizontal line indicates the Average of the total score difference (as indicated on the y-axis) only for the range that has been selected.     
+
+**Table**  
+- Row 1 shows the minimum and maximum values of the respective data ranges, while row 2 shows the average of the total score difference. For the Range, it represents the value of the horizontal green line on the chart.  
+
+- Row 3 indicates the number (count) of games in the respective ranges where the realised total score was *higher* than the predicted total score. If this number is high in proportion to Row 4, it indicates a good opportunity to place a Total Score "Over" bet in the future, if the predicted total score for a game of the selected team is within the associated range. If the number in Row 4 is high in proportion to Row 3, it indicates a good opportunity to place a Total Score "Under" bet in the future.  
+
+</small></small></small>  
+
+Example
+========================================================
+<small><small><small>
+Run the app and select team Adelaide, tick the Add Smoother option and select the Total Score Range from 180 to 190  
+
+- Note that the relevant data has been stored in the `shinyAfl` data.frame (see About in App for details of data)  
+
+
+
+
+```r
+# select Adelaide games with the Total Score range of 180-190
+adl <- filter(shinyAfl,team=="Adelaide") 
+adl.range <- filter(adl,total.score.close >= 180, total.score.close <= 190)
+
+#Calculate the average realised vs predicted total score difference for the range
+adl.range.avg <- mean(adl.range$total.diff)
+
+#And calculate the number of games "Over" and "Under" the predicted score
+adl.range.over <- sum(adl.range$total.diff > 0) 
+adl.range.under <- sum(adl.range$total.diff < 0)
+
+print(c(adl.range.avg,adl.range.over,adl.range.under))
+```
+
+```
+[1] 14.69231 20.00000  6.00000
+```
+- The above indicates an opportunity to place "Over" bets on games that Adelaide play in when the bookmaker's predicted Total Score is between 180 and 190 points  
+- Try this at [Shiny Apps](https://yo828.shinyapps.io/FootyBetting/)  
+</small></small></small>  
