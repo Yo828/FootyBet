@@ -68,7 +68,7 @@ This means that if you (historically) placed an "Over" bet on every game that Ad
 ### Links  
 The raw data for this app has been downloaded from [Australia Sports Betting](http://www.aussportsbetting.com/data/historical-afl-results-and-odds-data/) and has been manipulated for use in this project. Only data where all required fields were available have been included.  
 
-Source code for ui.R and server.R files are available here [GitHub](https://github.com/Yo828/DevelopingDataProducts).  
+Source code for ui.R and server.R files are available here [GitHub](https://github.com/Yo828/FootyBet).  
 
 The Shiny app can be executed here [Shiny Apps](https://yo828.shinyapps.io/FootyBetting/)
 
